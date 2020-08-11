@@ -1,3 +1,5 @@
 {
-    "project_name": "Hello world"
+    "project_name": "bimdata-backend-boilerplate",
+    "author_name": "Bimdata",
+    "author_email": "infra@bimdata.io"
 }
