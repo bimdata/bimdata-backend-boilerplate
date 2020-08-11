@@ -1,0 +1,6 @@
+.*
+!.*ignore
+!.env.example
+!.circleci
+!.pre-commit-config.yaml
+**/__pycache__
