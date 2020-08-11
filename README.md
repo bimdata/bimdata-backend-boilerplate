@@ -6,5 +6,5 @@ A template with Oauth for quickly start a Bimdata application.
 
 ```
 pip install cookiecutter
-cookiecutter https://github.com/bimdata/app-template.git
+cookiecutter https://github.com/bimdata/bimdata-backend-boilerplate.git
 ```
