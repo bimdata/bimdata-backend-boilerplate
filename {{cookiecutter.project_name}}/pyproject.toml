@@ -7,7 +7,7 @@ authors = ["{{cookiecutter.author_name}} <{{cookiecutter.author_email}}>"]
 [tool.poetry.dependencies]
 python = "^3.8"
 django = "^3.0.7"
-drf-oidc-auth = {git = "https://github.com/ByteInternet/drf-oidc-auth", rev = "68a962446788ee55909f04daf2896b14820cfbec"}
+drf-oidc-auth = "^0.10.0"
 djangorestframework = "^3.11.0"
 markdown = "^3.2.2"
 django-filter = "^2.3.0"
