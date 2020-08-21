@@ -76,7 +76,7 @@ ROOT_URLCONF = "{{cookiecutter.project_name}}.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR + "/templates/"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -148,6 +148,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_AUTHENTICATION_CLASSES": ("oidc_auth.authentication.JSONWebTokenAuthentication",),
     "DEFAULT_PARSER_CLASSES": ("rest_framework.parsers.JSONParser",),
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
 }
 
 
