@@ -61,37 +61,9 @@ jobs:
       - run:
           name: run migrations test
           command: poetry run python manage.py migrate
-
-  release_libs:
-    <<: *container_config
-    steps:
-      - checkout
-      # config github
-      - add_ssh_keys
       - run:
-          command: |
-            git config --global user.email "infra@bimdata.io"
-            git config --global user.name "CircleCi Release"
-      # libs git cache
-      - restore_cache:
-          keys:
-            - v1-libs
-            - v1-dependencies-{{ "{{" }} checksum "poetry.lock" {{ "}}" }}
-      - run:
-          command: |
-            export GIT_COMMIT_DESC=$(git log --format=oneline -n 1 $CIRCLE_SHA1 | cut -d' ' -f2-999)
-            if [[ $GIT_COMMIT_DESC == PATCH:* ]] || [[ $GIT_COMMIT_DESC == MINOR:* ]] || [[ $GIT_COMMIT_DESC == MAJOR:* ]];
-            then
-              poetry install
-              export DEBIAN_FRONTEND=noninteractive
-              sudo apt-get update
-              sudo apt-get -y --no-install-recommends install default-jre-headless
-              poetry run bash .circleci/libs-deploy.sh
-            fi
-      - save_cache:
-          paths:
-            - ./venv
-          key: v1-libs
+          name: run test
+          command: poetry run python manage.py test
 
   build_and_push:
     <<: *container_config
@@ -146,14 +118,6 @@ workflows:
   test_and_deploy:
     jobs:
       - test
-      - release_libs:
-          requires:
-            - test
-          filters:
-            branches:
-              only:
-                - release
-                - master
       - deploy_docker_dev:
           type: approval
           filters:

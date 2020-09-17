@@ -29,6 +29,9 @@ ADMINS = [("infra", "infra@bimdata.io")]
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY", "y^1o_0dz-vi7omq$6e@7%mhnj*mc4v+n8+3pvcxwcx-y#p50ty")
 
+ADMIN_INTERFACE = os.environ.get("ADMIN_INTERFACE", False)
+ADMIN_URL = os.environ.get("ADMIN_URL", "http://localhost:8000/admin")
+
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = False
@@ -50,11 +53,9 @@ CORS_ALLOW_HEADERS = default_headers + ("Content-Encoding",)
 
 INSTALLED_APPS = [
     "user",
-    "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
-    "django.contrib.messages",
     "django.contrib.staticfiles",
     "corsheaders",
     "rest_framework",
@@ -230,6 +231,16 @@ EMAIL_HOST_PASSWORD = os.getenv("MANDRILL_SMTP_KEY", False)
 EMAIL_HOST_USER = "BIMData.io"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+if ADMIN_INTERFACE == "True":
+    from {{cookiecutter.project_name}} import settings_admin
+
+    INSTALLED_APPS = settings_admin.INSTALLED_APPS
+    MIDDLEWARE = settings_admin.MIDDLEWARE
+    TEMPLATES = settings_admin.TEMPLATES
+    ENV_COLOR = settings_admin.ENV_COLOR
+
 
 if "development" in ENV:
     DEBUG = True
