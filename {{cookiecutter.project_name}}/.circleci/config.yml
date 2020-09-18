@@ -22,8 +22,6 @@ mapping-var-env: &mapping-var-env
         ;;
       "develop") ENV=staging
         ;;
-      *) ENV=dev_$(echo "$CIRCLE_BRANCH" | iconv -t ascii//TRANSLIT | sed -r s/[^a-zA-Z0-9]+/-/g | sed -r s/^-+\|-+$//g | tr A-Z a-z)
-        ;;
     esac
     echo 'export ENV='$ENV >> $BASH_ENV
 
@@ -118,14 +116,6 @@ workflows:
   test_and_deploy:
     jobs:
       - test
-      - deploy_docker_dev:
-          type: approval
-          filters:
-            branches:
-              ignore:
-                - master
-                - release
-                - develop
       - build_and_push:
           requires:
             - test
@@ -138,7 +128,3 @@ workflows:
       - deploy:
           requires:
             - build_and_push
-      - build_and_push:
-          name: build_and_push_docker_dev
-          requires:
-            - deploy_docker_dev
