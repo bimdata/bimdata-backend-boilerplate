@@ -21,3 +21,10 @@ docker-compose up -d
 ```
 
 And navigate to localhost:4242
+
+## Setup git hooks
+
+Install a pre-commit hook with black and flake8 check
+```
+pre-commit install
+```
