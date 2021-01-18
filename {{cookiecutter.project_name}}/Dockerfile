@@ -1,7 +1,7 @@
-FROM python:3.8
+FROM python:3.9
 
 ENV PYTHONUNBUFFERED 1
-ENV POETRY_VERSION="1.0.5"
+ENV POETRY_VERSION="1.1.3"
 
 RUN wget -O get-poetry.py https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py && \
     python get-poetry.py --version ${POETRY_VERSION} -y && \

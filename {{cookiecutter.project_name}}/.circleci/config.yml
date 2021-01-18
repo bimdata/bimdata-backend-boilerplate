@@ -9,7 +9,7 @@ docker-sign-in: &docker-sign-in
 compile-minify: &compile-minify
   name: run compile/minify
   command: |
-    python3.8 -m pip install compile-minifier
+    python3.9 -m pip install compile-minifier
     compileminify run
 
 mapping-var-env: &mapping-var-env
@@ -30,19 +30,19 @@ version: 2.1
 references:
   container_config: &container_config
     docker:
-      - image: circleci/python:3.8
+      - image: circleci/python:3.9
     working_directory: ~/repo
 
 jobs:
   test:
     docker:
-      - image: circleci/python:3.8
+      - image: circleci/python:3.9
       - image: circleci/postgres:10-alpine
         environment:
           POSTGRES_PASSWORD: "{{cookiecutter.project_name}}"
           POSTGRES_DB: "{{cookiecutter.project_name}}"
           POSTGRES_USER: "{{cookiecutter.project_name}}"
-      - image: rabbitmq:3.6-management-alpine
+      - image: rabbitmq:3-management-alpine
         environment:
           RABBITMQ_DEFAULT_USER: {{cookiecutter.project_name}}
           RABBITMQ_DEFAULT_PASS: {{cookiecutter.project_name}}

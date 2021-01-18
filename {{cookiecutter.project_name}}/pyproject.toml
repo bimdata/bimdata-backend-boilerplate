@@ -5,7 +5,7 @@ description = ""
 authors = ["{{cookiecutter.author_name}} <{{cookiecutter.author_email}}>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.9"
 django = "^3.0.7"
 drf-oidc-auth = "^0.10.0"
 djangorestframework = "^3.11.0"
