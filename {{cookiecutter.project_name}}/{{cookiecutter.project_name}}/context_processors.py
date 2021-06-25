@@ -1,4 +1,4 @@
-from {{cookiecutter.project_name}} import settings_admin as settings
+from django.conf import settings
 
 
 def from_settings(request):

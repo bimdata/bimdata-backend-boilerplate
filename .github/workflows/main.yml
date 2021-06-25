@@ -1,0 +1,57 @@
+
+name: Django boilerplate
+
+on: push
+
+env:
+  app: my_app
+  db_name: django-boilerplate-${{ github.run_id }}
+
+jobs:
+  test:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install packages prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install python3.9-dev libpq-dev postgresql-client -y
+      - name: Create database
+        run: createdb -h postgres -U bimdata ${{ env.db_name }}
+        env:
+          PGPASSWORD: bimdata
+      - name: Install CookieCutter
+        run: pip install cookiecutter
+      - name: Create app with cookiecutter
+        run: cookiecutter --no-input .
+      - name: Install poetry
+        uses: snok/install-poetry@v1.1.2  
+      - name: Install library and config
+        run: |
+          poetry install --no-interaction
+          cp .env.example .env
+        working-directory: ./${{ env.app }}
+      - name: Launch server
+        run: |
+          poetry run python manage.py migrate
+          poetry run python manage.py runserver 8000 & sleep 5
+        working-directory: ./${{ env.app }}
+        env: 
+          DB_HOST: postgres
+          DB_PORT: 5432
+          DB_NAME: ${{ env.db_name }}
+          DB_USER: bimdata
+          DB_PASSWORD: bimdata
+      - name: Test health
+        run: curl -sSf 127.0.0.1:8000/health/ > /dev/null
+      - name: Stop server 
+        run: pkill -f runserver
+      - name: Remove database
+        if: ${{ always() }}
+        run: dropdb -h postgres -U bimdata ${{ env.db_name }}
+        env:
+          PGPASSWORD: bimdata

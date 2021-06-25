@@ -5,6 +5,7 @@
 ```
 pip install poetry
 poetry install
+cp .env.example .env
 ```
 
 ## Run
@@ -13,14 +14,6 @@ poetry install
 python manage.py migrate
 python manage.py runserver 0.0.0.0:8000
 ```
-
-## Run with docker-compose
-
-```
-docker-compose up -d
-```
-
-And navigate to localhost:4242
 
 ## Setup git hooks
 
