@@ -1,11 +1,14 @@
 from django.conf import settings
 from django.urls import include
 from django.urls import path
+from rest_framework import routers
 
+router = routers.DefaultRouter()
 
-urlpatterns = [
-    path("health/", include("health_check.urls")),
-]
+# For register a new viewset :
+# router.register('new-view', NewViewSet)
+
+urlpatterns = [path("", include(router.urls)), path("health/", include("health_check.urls"))]
 
 
 if settings.ADMIN_INTERFACE == "True":
