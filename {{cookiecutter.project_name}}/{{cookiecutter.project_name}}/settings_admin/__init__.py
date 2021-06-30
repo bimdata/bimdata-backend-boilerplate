@@ -10,20 +10,10 @@ load_dotenv(join(dirname(__file__), "../../.env"))
 ENV = environ.get("ENV", "development")
 
 _base_settings = [
-    "../settings_base/components/common.py",
-    "../settings_base/components/database.py",
-    "../settings_base/components/email.py",
-    "../settings_base/components/logging.py",
-    "../settings_base/components/provider.py",
-    "common.py",
-    "urls.py",
+    "../settings_base/components/*.py",
+    "./*.py",
+    "../settings_base/environments/production.py",
 ]
-
-if "development" in ENV:
-    _base_settings += ["../settings_base/environments/development.py"]
-else:
-    _base_settings += ["../settings_base/environments/production.py"]
-
 
 # Include settings:
 include(*_base_settings)

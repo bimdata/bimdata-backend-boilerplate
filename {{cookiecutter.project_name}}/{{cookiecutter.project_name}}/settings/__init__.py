@@ -11,11 +11,7 @@ ENV = environ.get("ENV", "development")
 ADMIN_INTERFACE = environ.get("ADMIN_INTERFACE", False)
 
 _base_settings = [
-    "../settings_base/components/common.py",
-    "../settings_base/components/database.py",
-    "../settings_base/components/email.py",
-    "../settings_base/components/logging.py",
-    "../settings_base/components/provider.py",
+    "../settings_base/components/*.py",
 ]
 
 if "development" in ENV:
