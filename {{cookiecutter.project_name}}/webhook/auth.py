@@ -16,8 +16,6 @@ class BimdataSignatureAuthentication(BaseAuthentication):
         ).hexdigest()
 
         if not hmac.compare_digest(req_signature, body_signature):
-            raise ValidationError(
-                detail={"x-bimdata-signature": "Bad request signature"}
-            )
+            raise ValidationError(detail={"x-bimdata-signature": "Bad request signature"})
 
         return (req_signature, req_signature)

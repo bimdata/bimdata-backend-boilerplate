@@ -8,9 +8,7 @@ LOGGING = {
     "disable_existing_loggers": False,
     "filters": {"require_debug_false": {"()": "django.utils.log.RequireDebugFalse"}},
     "formatters": {
-        "verbose": {
-            "format": "[django] %(levelname)s %(asctime)s %(module)s %(message)s"
-        }
+        "verbose": {"format": "[django] %(levelname)s %(asctime)s %(module)s %(message)s"}
     },
     "handlers": {
         "null": {"level": "DEBUG", "class": "logging.NullHandler"},
