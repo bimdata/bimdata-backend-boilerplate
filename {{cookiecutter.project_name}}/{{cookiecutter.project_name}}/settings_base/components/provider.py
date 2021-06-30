@@ -1,5 +1,6 @@
 from os import environ
 
+
 OIDC_PROVIDER_ENDPOINT = (
     environ.get("OIDC_PROVIDER_ENDPOINT", "http://localhost:8080") + "/auth"
 )

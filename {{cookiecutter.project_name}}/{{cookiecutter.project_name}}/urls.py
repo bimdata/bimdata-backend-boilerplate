@@ -2,6 +2,7 @@ from django.conf import settings
 from django.urls import include
 from django.urls import path
 from rest_framework import routers
+from webhook.views import WebHookHandler
 
 from {{cookiecutter.project_name}}.views import plugin
 
@@ -14,6 +15,7 @@ urlpatterns = [
     path("", include(router.urls)),
     path("health/", include("health_check.urls")),
     path("plugin/", plugin),
+    path("webhook", WebHookHandler.as_view(), name="webhook")  
 ]
 
 

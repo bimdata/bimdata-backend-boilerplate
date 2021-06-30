@@ -110,3 +110,6 @@ USE_L10N = True
 USE_TZ = True
 
 APPEND_SLASH = False
+
+
+WEBHOOKS_SECRET = environ.get("WEBHOOKS_SECRET", "123")
