@@ -3,12 +3,18 @@ from django.urls import include
 from django.urls import path
 from rest_framework import routers
 
+from {{cookiecutter.project_name}}.views import plugin
+
 router = routers.DefaultRouter()
 
 # For register a new viewset :
 # router.register('new-view', NewViewSet)
 
-urlpatterns = [path("", include(router.urls)), path("health/", include("health_check.urls"))]
+urlpatterns = [
+    path("", include(router.urls)),
+    path("health/", include("health_check.urls")),
+    path("plugin/", plugin),
+]
 
 
 if settings.ADMIN_INTERFACE == "True":

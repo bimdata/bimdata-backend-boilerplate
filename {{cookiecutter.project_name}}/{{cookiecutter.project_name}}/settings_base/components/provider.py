@@ -1,8 +1,5 @@
 from os import environ
 
-OIDC_PROVIDER_ADMIN_LOGIN = environ.get("OIDC_PROVIDER_ADMIN_LOGIN", "keycloak@bimdata.io")
-OIDC_PROVIDER_ADMIN_PASSWORD = environ.get("OIDC_PROVIDER_ADMIN_PASSWORD", "123")
-
 OIDC_PROVIDER_ENDPOINT = (
     environ.get("OIDC_PROVIDER_ENDPOINT", "http://localhost:8080") + "/auth"
 )
