@@ -24,6 +24,7 @@ if environ.get("ALLOWED_HOSTS"):
 
 INSTALLED_APPS = [
     "user",
+    "webhook",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
