@@ -15,8 +15,8 @@ else:
 GRAPPELLI_ADMIN_TITLE = "{{cookiecutter.project_name}} Admin"
 # Application definition
 INSTALLED_APPS += [
-    "grappelli.dashboard",
     "grappelli",
+    "grappelli.dashboard",
     "django.contrib.admin",
     "django.contrib.messages",
     "django.contrib.admindocs",
