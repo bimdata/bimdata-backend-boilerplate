@@ -50,8 +50,3 @@ jobs:
         run: curl -sSf 127.0.0.1:8000/health/ > /dev/null
       - name: Stop server 
         run: pkill -f runserver
-      - name: Remove database
-        if: ${{ always() }}
-        run: dropdb -h postgres -U bimdata ${{ env.db_name }}
-        env:
-          PGPASSWORD: bimdata
