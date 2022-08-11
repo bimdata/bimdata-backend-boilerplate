@@ -2,9 +2,9 @@ from django.conf import settings
 from django.urls import include
 from django.urls import path
 from rest_framework import routers
-from webhook.views import WebHookHandler
 
 from {{cookiecutter.project_name}}.views import plugin
+from webhook.views import WebHookHandler
 
 router = routers.DefaultRouter()
 

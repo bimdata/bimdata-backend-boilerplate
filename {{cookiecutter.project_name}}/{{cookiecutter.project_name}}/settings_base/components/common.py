@@ -1,11 +1,8 @@
 from os import environ
 
 from corsheaders.defaults import default_headers
-from django.core.exceptions import ImproperlyConfigured
 
 from {{cookiecutter.project_name}}.settings_base.components import BASE_DIR
-from {{cookiecutter.project_name}}.settings_base.components.provider import OIDC_PROVIDER_ENDPOINT
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
