@@ -35,6 +35,8 @@ jobs:
           poetry install --no-interaction
           cp .env.example .env
         working-directory: ./${{ env.app }}
+        env:
+          C_INCLUDE_PATH: "/usr/include/python3.10"
       - name: Launch server
         run: |
           poetry run python manage.py migrate
