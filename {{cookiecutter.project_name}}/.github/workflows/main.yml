@@ -8,7 +8,7 @@ env:
 
 jobs:
   test:
-    runs-on: self-hosted
+    runs-on: [self-hosted, common]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -33,7 +33,7 @@ jobs:
           DB_PASSWORD: bimdata
 
   build-and-push:
-    runs-on: self-hosted
+    runs-on: [self-hosted, common]
     needs: test
     if: contains('
           refs/heads/develop
@@ -81,7 +81,7 @@ jobs:
             docker-registry.bimdata.io/bimdata/{{ "${{ env.app }}" }}:{{ "${{ env.tag }}" }}
   
   deploy:
-    runs-on: self-hosted
+    runs-on: [self-hosted, common]
     needs: build-and-push
     steps:
       - name: Login to BIMData Docker Registry
